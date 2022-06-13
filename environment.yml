@@ -1,0 +1,9 @@
+name: earth-analytics
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - geemap
+  - earthengine-api
+prefix: C:\Users\Owner\miniconda3\envs\earth-analytics
