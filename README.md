@@ -1,7 +1,5 @@
 # mng-rangeland
 
-github home page: https://github.com/ta346/mng-rangeland.git
-
 Is observed change in grassland vegetation index due to rising herding sizes, changing climate, both or neither?
 
 Summary
