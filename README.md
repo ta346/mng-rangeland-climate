@@ -12,7 +12,7 @@ Simple workflow to reproduce the files downloaded in this study:
 
 1. Clone this repository
 2. Install all the packages and dependencies stored in `environment.yml`. [For more information on creating an environment from an environment.yml file](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
-3. Sign-up for Earth-Engine access. [For more information](https://developers.google.com/earth-engine/guides/access)
+3. Sign-up for Earth-Engine access. [For more information on signing up for earth engine access, please click here.](https://developers.google.com/earth-engine/guides/access)
 4. Run jupyter notebook `data_acquisition.ipynb`
 
 The output for vegetation indices will be .csv files for each year by soum regions. The csv files are downloaded and stored in the Google Drive folder named after '--SOUM_LANDSAT_VEG' or '--SOUM_MODIS_VEG' associated with the Google Earth Engine. Similarly, weather outputs will be in the format of csv files for each month by soum regions stored in Google Drive folder named '--SOUM_ERA_WEATHER'. 
