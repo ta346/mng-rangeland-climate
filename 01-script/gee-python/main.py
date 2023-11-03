@@ -279,7 +279,7 @@ def get_era5_collection(dateIni,
     
     return era5
 
-def download_img_col_stats_to_csv_yearly(collection, 
+def download_img_col_stats_to_csv_yearly(collection,
                             bandnames, 
                             box, 
                             reducerAll, 
@@ -351,6 +351,8 @@ def download_img_col_stats_to_csv_yearly(collection,
     
     """
     collection = collection
+    # startYear = startYear 
+    # endYear = endYear
     bandnames = bandnames
     box = box
     feat_name = feat_name
@@ -383,7 +385,7 @@ def download_img_col_stats_to_csv_yearly(collection,
     else:
         reducerAll = False
     
-    # get range of years in the collection
+    # # get range of years in the collection
     collection = ee.ImageCollection(collection).sort('system:time_start')
     range_date = collection.reduceColumns(ee.Reducer.minMax(), ['system:time_start'])
     start = int(ee.Date(range_date.get('min')).format('YYYY').getInfo())
@@ -397,7 +399,7 @@ def download_img_col_stats_to_csv_yearly(collection,
         # dateEnd = ee.Date.fromYMD(loopYear, endMonth, 31)
         
         #filter by each year, and select bandnames
-        collection = (collection.filter(ee.Filter.date(dateIni, dateEnd))
+        img_collection = (collection.filter(ee.Filter.date(dateIni, dateEnd))
                                 .select(bandnames)) # select bands to export
         
         if other_mask and other_mask_parameter:
@@ -410,9 +412,9 @@ def download_img_col_stats_to_csv_yearly(collection,
             if not other_mask and other_mask_parameter:
                 raise ValueError("other_mask is expected")
 
-            collection = collection.map(mask.image_mask(other_mask, other_mask_parameter))
+            img_collection = img_collection.map(mask.image_mask(other_mask, other_mask_parameter))
 
-        output = collection.map(utils.reduce_regions_function(reduction_boundary, 
+        output = img_collection.map(utils.reduce_regions_function(reduction_boundary, 
                                                                 reducerAll = reducerAll,
                                                                 scale = scale, 
                                                                 crs = crs, 
@@ -532,7 +534,7 @@ def download_img_col_to_csv_monthly(collection,
     feat_name = feat_name
     scale = scale
     tileScale = tileScale
-    other_mask = other_mask, 
+    other_mask = ee.Image(other_mask) 
     other_mask_parameter = other_mask_parameter
     file_name = file_name
     folder_name = folder_name
@@ -574,6 +576,7 @@ def download_img_col_to_csv_monthly(collection,
             #filter by each year, and select bandnames
             df = (collection.filter(ee.Filter.date(dateIni, dateEnd))
                                     .select(bandnames)) # select bands to export
+           
             if other_mask and other_mask_parameter:
                 if not isinstance (other_mask, ee.Image):
                     raise TypeError("other_mask expects ee.Image where pixel values 0 will return invalid")
