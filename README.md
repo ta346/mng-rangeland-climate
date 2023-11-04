@@ -2,11 +2,13 @@
 
 ## Summary
 
-This study explores the relationship between livestock populations and rangeland vegetation conditions using remote sensing at the soum level (the second smallest administrative subdivision of Mongolia), controlling for extreme weather events. We have assembled 35 years of spatially disaggregated data, allowing for a more precise estimation of the correlates of rangeland degradation than has been possible previously.
+This study explores the relationship between livestock herd size and rangeland productivity using remote sensing at the soum level (the second smallest administrative subdivision of Mongolia), controlling for extreme weather events. We have assembled 35 years of spatially disaggregated data, allowing for a more precise estimation of rangeland degradation than has been possible previously.
+
+The current version of draft can be accessed at [here](https://drive.google.com/file/d/1ueFvNf86GHdMPXUL3Mb0OvVT3nVbw2Ji/view)
 
 ## Data Acquisition
 
-In this repository, you will find Python scripts used to download main datasets: vegetation indices, weather indicators, plot level vegetation indices. The `01-scripts` directory contains a Jupyter notebook (`data_acquisition.ipynb`) where the data is accessed and downloaded, as well as three Python helper modules used in the data acquisition process. You can set up the required environment using the `environment.yml` file, which includes the necessary packages and dependencies used in this analysis.
+In this repository, you will find Python scripts used to download main raw datasets used in this study: vegetation indices, weather indicators, plot level vegetation indices. The `01-scripts` directory contains a Jupyter notebook (`data_acquisition.ipynb`) where the data is accessed and downloaded, as well as three Python helper modules used in the data acquisition process. You can set up the required environment using the `environment.yml` file, which includes the necessary packages and dependencies used in this analysis.
 
 ## Reproducing the Data
 
