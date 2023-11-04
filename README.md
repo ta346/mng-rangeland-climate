@@ -4,7 +4,7 @@
 
 This study explores the relationship between livestock herd size and rangeland productivity using remote sensing at the soum level (the second smallest administrative subdivision of Mongolia), controlling for extreme weather events. We have assembled 35 years of spatially disaggregated data, allowing for a more precise estimation of rangeland degradation than has been possible previously.
 
-The current version of draft can be accessed at [here](https://drive.google.com/file/d/1ueFvNf86GHdMPXUL3Mb0OvVT3nVbw2Ji/view)
+The current paper draft can be accessed [here](https://drive.google.com/file/d/1ueFvNf86GHdMPXUL3Mb0OvVT3nVbw2Ji/view).
 
 ## Data Acquisition
 
