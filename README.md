@@ -1,22 +1,22 @@
-# mng-rangeland
+# Disentangling Drivers of Rangeland Degradation: Herd Size versus Climate in Mongolia, 1985-2023
 
-Is observed change in grassland vegetation index due to rising herding sizes, changing climate, both or neither?
+## Summary
 
-Summary: 
+This study explores the relationship between livestock populations and rangeland vegetation conditions using remote sensing at the soum level (the second smallest administrative subdivision of Mongolia), controlling for extreme weather events. We have assembled 35 years of spatially disaggregated data, allowing for a more precise estimation of the correlates of rangeland degradation than has been possible previously.
 
-This study explores the relationship between livestock populations and rangeland vegetation conditions using remote sensing at the soum level (the second smallest administrative subdivision of Mongolia), controlling for extreme weather events. We have assembled 35 years of spatially disaggregated data, allowing for a more precise estimation of the correlates of rangeland degradation than has been possible previously. 
+## Data Acquisition
 
-In this repo, I uploaded Python script used to download two main datasets: vegetitation indices and weather indicators. The `01-script/gee-python` folder contains jupyter notebook, where the data is accessed and downlaoded, and four python helper modules used in downloading stages. The `environment.yml` file contains important packages and dependencies used in this analysis. 
+In this repository, you will find Python scripts used to download main datasets: vegetation indices, weather indicators, plot level vegetation indices. The `01-scripts` directory contains a Jupyter notebook (`data_acquisition.ipynb`) where the data is accessed and downloaded, as well as three Python helper modules used in the data acquisition process. You can set up the required environment using the `environment.yml` file, which includes the necessary packages and dependencies used in this analysis.
 
-Simple workflow to reproduce the files downloaded in this study: 
+## Reproducing the Data
 
-1. Clone this repository
-2. Install all the packages and dependencies stored in `environment.yml`. [For more information on creating an environment from an environment.yml file using conda package management system.](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file)
-3. Sign-up for Earth-Engine access. [For more information on signing up for earth engine access, visit the google earth eninge's guide here.](https://developers.google.com/earth-engine/guides/access)
-4. Run jupyter notebook `data_acquisition.ipynb`
+To reproduce the data downloaded in this study, follow the following steps:
 
-The output for vegetation indices will be .csv files for each year by soum regions. The csv files are downloaded and stored in the Google Drive folder named after '--SOUM_LANDSAT_VEG' or '--SOUM_MODIS_VEG' associated with the Google Earth Engine account. Similarly, weather outputs will be in the format of csv files for each month by soum regions stored in Google Drive folder named '--SOUM_ERA_WEATHER'. 
+1. Clone this repository to your local machine.
+2. Install all the packages and dependencies stored in `environment.yml`. You can create an environment from the YAML file using the conda package management system.
+3. Sign up for Earth Engine access by visiting the Google Earth Engine's guide [here](https://earthengine.google.com/signup/).
+4. Run the Jupyter notebook `data_acquisition.ipynb` to download the data.
+5. The output for vegetation indices will be CSV files for each month by soum regions. The CSV files will be downloaded and stored in a Google Drive folder named `--SOUM_LANDSAT_VEG` or `--SOUM_MODIS_VEG` associated with your Google Earth Engine account.
+6. Similarly, weather data outputs will be in the format of CSV files for each month by soum regions, and they will be stored in a Google Drive folder named `--SOUM_ERA_WEATHER`.
 
-If you have any questions, please don't hesitate to contact me at ta346@cornell.edu
-
-
+If you have any questions or need further assistance, please don't hesitate to contact me at ta346@cornell.edu.
