@@ -1,5 +1,4 @@
 import ee 
-import pandas as pd
 
 def create_reduce_region_function(geometry,
                                   reducer=ee.Reducer.mean(),
@@ -107,7 +106,8 @@ def reduce_regions_function(reduction_regions,
               .combine(ee.Reducer.minMax(), '', True) 
               .combine(ee.Reducer.stdDev(), '', True) 
               .combine(ee.Reducer.intervalMean(10, 90).setOutputs(['int_mean_10_90']), '', True) 
-              .combine(ee.Reducer.count(),'', True))
+              .combine(ee.Reducer.count(),'', True)
+              .combine(ee.Reducer.sum(), '', True))
   else:
     reducerAll = (ee.Reducer.mean().combine(ee.Reducer.median(), '', True))
 
@@ -173,15 +173,6 @@ def fc_to_dict(fc):
         selectors=prop_names).get('list')
     return ee.Dictionary.fromLists(prop_names, prop_lists)
 
-
-# Function to add date variables to DataFrame.
-def add_date_info(df):
-    df['Timestamp'] = pd.to_datetime(df['millis'], unit='ms')
-    df['Year'] = pd.DatetimeIndex(df['Timestamp']).year
-    df['Month'] = pd.DatetimeIndex(df['Timestamp']).month
-    df['Day'] = pd.DatetimeIndex(df['Timestamp']).day
-    df['DOY'] = pd.DatetimeIndex(df['Timestamp']).dayofyear
-    return df
 
 def bitwiseExtract(img, fromBit, toBit, new_name):
 

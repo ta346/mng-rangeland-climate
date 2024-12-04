@@ -122,7 +122,7 @@ def get_modis46a_500_collection(dateIni,
     dateIni = ee.Date(dateIni)
     dateEnd = ee.Date(dateEnd)
     
-    modis43A = (ee.ImageCollection('MODIS/006/MCD43A4')
+    modis43A = (ee.ImageCollection('MODIS/061/MCD43A4')
                         .filterBounds(box)
                         .filterDate(dateIni, dateEnd)
                         .map(modis43A_scale_factor))
@@ -202,13 +202,12 @@ def download_img_col_to_csv_monthly(collection,
                                     endMonth, 
                                     bandnames, 
                                     box, 
+                                    mask = None,
                                     reducerAll = False, 
                                     feat_name = None, 
                                     scale = 9000, 
                                     crs = 'EPSG:4326',
                                     tileScale = 1,
-                                    other_mask = None, 
-                                    other_mask_parameter = None,
                                     file_name = "stats_", 
                                     folder_name = "GEE_OUTPUT"):
 
@@ -259,23 +258,16 @@ def download_img_col_to_csv_monthly(collection,
             df = (collection.filter(ee.Filter.date(dateIni, dateEnd))
                                     .select(bandnames)) # select bands to export
            
-            if other_mask and other_mask_parameter:
-                if not isinstance (other_mask, ee.Image):
-                    raise TypeError("other_mask expects ee.Image where pixel values 0 will return invalid")
-                if not isinstance (other_mask_parameter, list):
-                    raise TypeError("other_mask_parameter expects python style list of pixel values to mask")
-                if other_mask and not other_mask_parameter:
-                    raise ValueError("other_mask_parameter is expected")
-                if not other_mask and other_mask_parameter:
-                    raise ValueError("other_mask is expected")
-
-                df = df.map(image_mask(other_mask, other_mask_parameter))
+            if mask:
+                def apply_mask(img):
+                    return img.updateMask(mask)
+                df = df.map(apply_mask)
             
             reduction_boundary = box.select(feat_name) if feat_name else box
             output = df.map(reduce_regions_function(reduction_boundary, reducerAll=reducerAll, scale=scale, crs=crs, tileScale=tileScale)).flatten()
             out = output.select(['.*'], None, False)
 
-            filename = file_name + str(loopyear) + "_" + str(month)
+            filename = file_name + "_" + str(loopyear) + "_" + str(month)
             folder = folder_name
 
             task = ee.batch.Export.table.toDrive(collection=out, description=filename, folder=folder, fileFormat='CSV')
